@@ -10,13 +10,13 @@ db = SQLAlchemy(app)
 app_context = app.app_context()
 app_context.push()
 
+
 class Item(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False) 
     price = db.Column(db.Integer, nullable=False)
     isActve = db.Column(db.Boolean, default=True) 
    
-
 
 @app.route('/')
 def index():
