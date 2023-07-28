@@ -38,9 +38,10 @@ class Item(db.Model):
     isActve = db.Column(db.Boolean, default=True) 
    
 
-@app.route('/')
+@app.route('/') 
 def index():
-    return render_template('index.html')
+    items = Item.query.order_by(Item.price).all()
+    return render_template('index.html', data=items)
 
 
 @app.route('/about')
@@ -57,7 +58,7 @@ def create():
 
         try:
             db.session.add(item)
-            db.session.commit
+            db.session.commit()
             return redirect ('/')
         except:
             return "Где-то ошибка!"
